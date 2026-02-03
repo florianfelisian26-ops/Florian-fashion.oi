@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mwombeki Fashion | Nguo & Viatu</title>
+
+<meta name="description" content="Mwombeki Fashion – Nguo na viatu vya kisasa. Order moja kwa moja kupitia WhatsApp.">
+<meta name="author" content="Mwombeki Fashion">
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/892/892458.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;color:#111}
+
+/* HEADER */
+header{
+ position:fixed;top:0;width:100%;
+ padding:15px 40px;
+ background:rgba(0,0,0,.85);
+ display:flex;justify-content:space-between;
+ z-index:1000;color:#fff
+}
+header a{color:#fff;text-decoration:none;margin-left:20px}
+
+/* SLIDER */
+.slider{
+ height:100vh;position:relative;overflow:hidden
+}
+.slide{
+ position:absolute;width:100%;height:100%;
+ background-size:cover;background-position:center;
+ opacity:0;transition:1s
+}
+.slide.active{opacity:1}
+.slider-content{
+ position:absolute;top:50%;left:50%;
+ transform:translate(-50%,-50%);
+ color:#fff;text-align:center;
+ background:rgba(0,0,0,.4);
+ padding:30px;border-radius:15px
+}
+.slider-content h1{font-size:50px}
+
+/* SECTIONS */
+section{padding:100px 20px;text-align:center}
+h2{font-size:36px;margin-bottom:40px}
+
+/* PRODUCTS */
+.products{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+ gap:25px;max-width:1200px;margin:auto
+}
+.product{
+ box-shadow:0 10px 25px rgba(0,0,0,.15);
+ border-radius:15px;overflow:hidden;
+ opacity:0;transform:translateY(30px);
+ transition:.7s
+}
+.product img{width:100%;height:250px;object-fit:cover}
+.product h3{margin:15px}
+.product p{padding:0 15px 10px;color:#555}
+.product a{
+ display:block;margin:15px;
+ padding:12px;background:#000;
+ color:#fff;text-decoration:none;border-radius:25px
+}
+
+/* TESTIMONIAL */
+.dark{background:#111;color:#fff}
+
+/* WHATSAPP */
+.whatsapp{
+ position:fixed;bottom:25px;right:25px;
+ background:#25d366;color:#fff;
+ font-size:28px;padding:16px;
+ border-radius:50%;text-decoration:none
+}
+
+/* FOOTER */
+footer{background:#000;color:#fff;padding:20px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+ .slider-content h1{font-size:32px}
+ header{padding:15px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<b>Mwombeki Fashion</b>
+<nav>
+<a href="#products">Bidhaa</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- HERO SLIDER -->
+<div class="slider">
+ <div class="slide active" style="background-image:url('https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg')"></div>
+ <div class="slide" style="background-image:url('https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg')"></div>
+ <div class="slide" style="background-image:url('https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg')"></div>
+
+ <div class="slider-content">
+   <h1>Style Yako,<br>Utambulisho Wako</h1>
+   <p>Nguo & Viatu vya Kisasa</p>
+ </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+<h2>Bidhaa Zetu</h2>
+<div class="products">
+
+<!-- 12 PRODUCTS -->
+<script>
+const items=[
+"Designer Shirt","Classic Sneakers","Leather Jacket","Casual Hoodie",
+"Official Shoes","Street Wear","Luxury Jacket","Modern Trousers",
+"Sport Shoes","Fashion Dress","Urban Outfit","Premium Coat"
+];
+const images=[
+"298863","2529148","428338","428340",
+"19090","428339","428341","298346",
+"2529150","1926769","3755706","298864"
+];
+document.write(items.map((item,i)=>`
+<div class="product">
+<img src="https://images.pexels.com/photos/${images[i]}/pexels-photo-${images[i]}.jpeg">
+<h3>${item}</h3>
+<p>Quality ya juu • Style ya kisasa</p>
+<a href="https://wa.me/255787504216?text=Nahitaji ${item}" target="_blank">
+Order WhatsApp
+</a>
+</div>`).join(""));
+</script>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="dark">
+<h2>Wasiliana Nasi</h2>
+<form action="https://formspree.io/f/mnqejkdp" method="POST" style="max-width:400px;margin:auto">
+<input type="text" name="name" placeholder="Jina" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea name="message" placeholder="Ujumbe wako"></textarea>
+<button type="submit">Tuma</button>
+</form>
+</section>
+
+<a class="whatsapp" href="https://wa.me/255787504216">💬</a>
+
+<footer>© 2026 Mwombeki Fashion</footer>
+
+<script>
+/* SLIDER */
+let index=0;
+const slides=document.querySelectorAll(".slide");
+setInterval(()=>{
+ slides[index].classList.remove("active");
+ index=(index+1)%slides.length;
+ slides[index].classList.add("active");
+},4000);
+
+/* ANIMATION */
+const products=document.querySelectorAll(".product");
+window.addEventListener("scroll",()=>{
+ products.forEach(p=>{
+  if(p.getBoundingClientRect().top<window.innerHeight-50){
+   p.style.opacity=1;
+   p.style.transform="translateY(0)";
+  }
+ });
+});
+</script>
+
+</body>
+</html>
